@@ -58,7 +58,7 @@ function Parte() {
     doc.text("Hello World!", 10, 10);
     const pdfObject = doc.output();
     console.log(cliente + empleado)
-    doc.save('hola')
+    doc.save('hola.pdf')
 
   const emailContent ={
     cliente: cliente,
