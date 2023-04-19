@@ -24,7 +24,7 @@ const FilesView = () => {
             <NewFile/>
             <div className="fileView__titles">
                 <div className="fileView__titles--left">
-                    <p></p>
+                    <p>Nombre</p>
                 </div>
                 <div className="fileView__titles--right">
                     <p>Fecha Modificacion</p>

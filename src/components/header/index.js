@@ -5,7 +5,7 @@ import logo from '../img/logo.png'
 
 
 
-const index = ({ userPhoto }) => {
+const index = ({ Logo }) => {
     return (
         <div className='header' style={styles.container}>
             <div className="header__logo" style={styles.dentro} >
@@ -20,7 +20,7 @@ export default index
 
 const styles = {
     container:{
-        
+        marginTop: "20px",
     } ,
     dentro:{
         justifyContent: "center",

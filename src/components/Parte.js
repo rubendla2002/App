@@ -1,9 +1,12 @@
-import React, { useState, useRef, Component, useEffect } from "react";
+import React, { useState, useRef  } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import SignatureCanvas from "react-signature-canvas"
-import logo from "../media/Logo Nettronica.png"
+import logo from "./img/LOGOPDF.png"
 import jsPDF from "jspdf";
+import telefono from "./img/telefono.png"
+import correo from "./img/correo.png"
+import informacion from "./img/informacion.png"
 
 
 
@@ -16,15 +19,13 @@ function Parte() {
   const [endTime, setEndTime] = useState('');
   const [timeDifference, setTimeDifference] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
+  
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    console.log(date.toLocaleDateString('es', { weekday:"long", year:"numeric", month:"short", day:"numeric"}))
   }
 
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  function handleChange(selectedOption) {
-    setSelectedOption(selectedOption);
-  }
+  
   function handleStartTimeChange(event) {
     setStartTime(event.target.value);
   }
@@ -40,7 +41,6 @@ function Parte() {
     const timeDiffInSeconds = timeDiff / 1000;
     const hours = Math.floor(timeDiffInSeconds / 3600);
     const minutes = Math.floor((timeDiffInSeconds - (hours * 3600)) / 60);
-    const seconds = Math.floor(timeDiffInSeconds - (hours * 3600) - (minutes * 60));
     setTimeDifference(`${hours} horas ${minutes} minutos`);
   }
 
@@ -50,30 +50,54 @@ function Parte() {
   const [modelo, setModelo] = useState("");
   const [serie, setSerie] = useState("");
   const [trabajo, setTrabajo] = useState("");
-  const [materiales, setMateriales] = useState("");
   const [empleado, setEmpleado] = useState("");
   
   const submitInfo = () =>{
     const doc = new jsPDF();
-    doc.text("Hello World!", 10, 10);
-    const pdfObject = doc.output();
-    console.log(cliente + empleado)
-    doc.save('hola.pdf')
-
-  const emailContent ={
-    cliente: cliente,
-    encargado: encargado,
-    equipo: equipo,
-    modelo: modelo,
-    serie: serie,
-    trabajo: trabajo,
-    empleado: empleado,
-    inputs: inputs,
-    attachments: {
-      filename: doc,
-      content: doc.output('datapdf')
-    }
-  };
+    doc.addImage(logo, 'PNG' , 10, 8, 83, 25);
+    doc.setFontSize(12);
+    doc.text("PARTE DE VISITA", 150, 10);
+    doc.text("SERVICIO TÉCNICO", 147, 15);
+    doc.addImage(telefono,'PNG' ,152,18, 5,5)
+    doc.addImage(correo,'PNG' ,153,24, 3,3.5)
+    doc.addImage(informacion,'PNG' ,153,29.5, 3.5,3)
+    doc.setFontSize(10);
+    doc.text("928 755 239", 160, 22);
+    doc.text("soporte@nettronica.com", 160, 27);
+    doc.text("www.nettronica.com", 160, 32);
+    doc.setLineWidth(0.5);
+    doc.line(200, 40, 8, 40);
+    doc.line(8, 40, 8, 290); 
+    doc.line(200, 40, 200, 290);
+    doc.line(200, 290, 8, 290); 
+    doc.setFontSize(12);
+    doc.text("Cliente:  " + cliente, 10, 50 );
+    doc.text("Fecha:  " + selectedDate.toLocaleDateString('es', { weekday:"long", year:"numeric", month:"short", day:"numeric"}).toUpperCase(), 100, 50);
+    doc.text("Encargado:  " + encargado, 10, 63);
+    doc.text("Hora Inicial: " + startTime, 120, 63 );
+    doc.text("Hora Final: " + endTime, 160, 63 );
+    doc.text("Equipo:  " + equipo, 10, 75 );
+    doc.text("Modelo:  " + modelo, 95, 75 );
+    doc.text("Nº Serie:  " + serie, 145, 75 );
+    doc.text("Trabajo Realizado" , 80, 100 );
+    doc.text(trabajo, 20, 110, {align: 'justify',lineHeightFactor: 1.5,maxWidth:165})
+    doc.line(190, 103, 15, 103);
+    doc.line(190, 103, 190, 200); 
+    doc.line(15, 103, 15, 200); 
+    doc.line(190, 200, 15, 200);
+    doc.text("Materiales", 45, 211)
+    doc.text(inputs, 18, 221 ,{lineHeightFactor: 1.5,maxWidth:80});
+    doc.line(100, 215, 15, 215);
+    doc.line(100, 215, 100, 280); 
+    doc.line(15, 215, 15, 280); 
+    doc.line(100, 280, 15, 280);
+    doc.text("Firma Tecnico:  " ,  107, 211 )
+    doc.text("Firma Cliente:  " ,  155, 211 )
+    doc.addImage(signatureRef.current.toDataURL(), 'JPEG', 107,215, 40,40)
+    doc.addImage(signatureRefCliente.current.toDataURL(), 'JPEG', 155,215, 40,40)
+    console.log(cliente +" "+ empleado)
+    doc.text("Tiempo trabajado:  " + timeDifference, 120, 270)
+    doc.save('hola.pdf');
 
     
   }
@@ -97,10 +121,12 @@ function Parte() {
 
   const handleSave = () => {
     const signature = signatureRef.current.toDataURL();
+    console.log(signature)
     // enviar la firma a un servidor o almacenarla en el estado del componente
   };
   const handleSavecliente = () => {
     const signaturecliente = signatureRefCliente.current.toDataURL();
+    console.log(signaturecliente)
     // enviar la firma a un servidor o almacenarla en el estado del componente
 
   };
@@ -366,7 +392,7 @@ const styles = {
     position: "absolute",
     width: "400px",
     textAlign: "center",
-    top: "25%",
+    top: "30%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     color: "white",
