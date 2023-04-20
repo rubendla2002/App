@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import SignatureCanvas from "react-signature-canvas"
@@ -12,6 +12,7 @@ import informacion from "./img/informacion.png"
 
 function Parte() {
 
+  const [isChecked, setIsChecked] = useState(false);
   const signatureRef = useRef(null);
   const signatureRefCliente = useRef(null);
   const [inputs, setInputs] = useState([]);
@@ -19,19 +20,22 @@ function Parte() {
   const [endTime, setEndTime] = useState('');
   const [timeDifference, setTimeDifference] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
-  
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(date.toLocaleDateString('es', { weekday:"long", year:"numeric", month:"short", day:"numeric"}))
+    console.log(date.toLocaleDateString('es', { weekday: "long", year: "numeric", month: "short", day: "numeric" }))
   }
 
-  
+
   function handleStartTimeChange(event) {
     setStartTime(event.target.value);
   }
 
   function handleEndTimeChange(event) {
     setEndTime(event.target.value);
+  }
+  function handleCheckboxChange(event) {
+    setIsChecked(event.target.checked);
   }
 
   function calcTimeDifference() {
@@ -51,60 +55,73 @@ function Parte() {
   const [serie, setSerie] = useState("");
   const [trabajo, setTrabajo] = useState("");
   const [empleado, setEmpleado] = useState("");
-  
-  const submitInfo = () =>{
+
+  const submitInfo = () => {
     const doc = new jsPDF();
-    doc.addImage(logo, 'PNG' , 10, 8, 83, 25);
+    doc.addImage(logo, 'PNG', 10, 8, 83, 25);
     doc.setFontSize(12);
     doc.text("PARTE DE VISITA", 150, 10);
     doc.text("SERVICIO TÉCNICO", 147, 15);
-    doc.addImage(telefono,'PNG' ,152,18, 5,5)
-    doc.addImage(correo,'PNG' ,153,24, 3,3.5)
-    doc.addImage(informacion,'PNG' ,153,29.5, 3.5,3)
+    doc.addImage(telefono, 'PNG', 152, 18, 5, 5)
+    doc.addImage(correo, 'PNG', 153, 24, 3, 3.5)
+    doc.addImage(informacion, 'PNG', 153, 29.5, 3.5, 3)
     doc.setFontSize(10);
     doc.text("928 755 239", 160, 22);
     doc.text("soporte@nettronica.com", 160, 27);
     doc.text("www.nettronica.com", 160, 32);
     doc.setLineWidth(0.5);
     doc.line(200, 40, 8, 40);
-    doc.line(8, 40, 8, 290); 
+    doc.line(8, 40, 8, 290);
     doc.line(200, 40, 200, 290);
-    doc.line(200, 290, 8, 290); 
+    doc.line(200, 290, 8, 290);
     doc.setFontSize(12);
-    doc.text("Cliente:  " + cliente, 10, 50 );
-    doc.text("Fecha:  " + selectedDate.toLocaleDateString('es', { weekday:"long", year:"numeric", month:"short", day:"numeric"}).toUpperCase(), 100, 50);
-    doc.text("Encargado:  " + encargado, 10, 63);
-    doc.text("Hora Inicial: " + startTime, 120, 63 );
-    doc.text("Hora Final: " + endTime, 160, 63 );
-    doc.text("Equipo:  " + equipo, 10, 75 );
-    doc.text("Modelo:  " + modelo, 95, 75 );
-    doc.text("Nº Serie:  " + serie, 145, 75 );
-    doc.text("Trabajo Realizado" , 80, 100 );
-    doc.text(trabajo, 20, 110, {align: 'justify',lineHeightFactor: 1.5,maxWidth:165})
+    doc.text(cliente, 28, 50);
+    doc.text(selectedDate.toLocaleDateString('es', { weekday: "long", year: "numeric", month: "short", day: "numeric" }).toUpperCase(), 135, 50);
+    doc.text(encargado, 37, 63);
+    doc.text(startTime, 145, 63);
+    doc.text(endTime, 183, 63);
+    doc.text(inputs, 18, 221, { lineHeightFactor: 1.5, maxWidth: 80 });
+    doc.text(trabajo, 20, 110, { align: 'justify', lineHeightFactor: 1.5, maxWidth: 165 })
+    doc.text(equipo, 28, 75);
+    doc.text(modelo, 98, 75);
+    doc.text(serie, 160, 75);
+    doc.text(timeDifference, 158, 270)
+    doc.addImage(signatureRef.current.toDataURL(), 'JPEG', 107, 215, 40, 40)
+    doc.addImage(signatureRefCliente.current.toDataURL(), 'JPEG', 155, 215, 40, 40)
+    doc.setFontSize(13)
+    doc.setFont('helvetica', 'bold');
+    doc.text("Cliente:  ", 10, 50);
+    doc.text("Fecha:  ", 118, 50);
+    doc.text("Encargado:  ", 10, 63);
+    doc.text("Hora Inicial: ", 118, 63);
+    doc.text("Hora Final: ", 158, 63);
+    doc.text("Equipo:  ", 10, 75);
+    doc.text("Modelo:  ", 80, 75);
+    doc.text("Nº Serie:  ", 140, 75);
+    doc.line(200, 85, 8, 85);
+    doc.text("Trabajo Realizado", 80, 100);
     doc.line(190, 103, 15, 103);
-    doc.line(190, 103, 190, 200); 
-    doc.line(15, 103, 15, 200); 
+    doc.line(190, 103, 190, 200);
+    doc.line(15, 103, 15, 200);
     doc.line(190, 200, 15, 200);
     doc.text("Materiales", 45, 211)
-    doc.text(inputs, 18, 221 ,{lineHeightFactor: 1.5,maxWidth:80});
     doc.line(100, 215, 15, 215);
-    doc.line(100, 215, 100, 280); 
-    doc.line(15, 215, 15, 280); 
+    doc.line(100, 215, 100, 280);
+    doc.line(15, 215, 15, 280);
     doc.line(100, 280, 15, 280);
-    doc.text("Firma Tecnico:  " ,  107, 211 )
-    doc.text("Firma Cliente:  " ,  155, 211 )
-    doc.addImage(signatureRef.current.toDataURL(), 'JPEG', 107,215, 40,40)
-    doc.addImage(signatureRefCliente.current.toDataURL(), 'JPEG', 155,215, 40,40)
-    console.log(cliente +" "+ empleado)
-    doc.text("Tiempo trabajado:  " + timeDifference, 120, 270)
+    doc.text("Firma Tecnico:  ", 107, 211)
+    doc.text("Firma Cliente:  ", 155, 211)
+    console.log(cliente + " " + empleado)
+    doc.text("Tiempo trabajado:  ", 120, 270)
+    doc.text("Cubre contrato:  " + (isChecked ? "SI" : "NO" ), 120, 280)
     doc.save('hola.pdf');
 
-    
+
   }
 
   const handleAddInput = () => {
     setInputs([...inputs, '']);
-    
+
   };
 
   const handleInputChange = (event, index) => {
@@ -131,11 +148,9 @@ function Parte() {
 
   };
 
-  const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheck = (e) => {
-    setIsChecked(e.target.checked);
-  };
+
+
 
 
   return (
@@ -144,122 +159,114 @@ function Parte() {
       <div style={styles.containeer}>
 
         <div className="container">
-            <div className="row pt-5 mx-auto">
-              <label style={styles.labelEmpleado}>
-                Empleado:
-              </label>
+          <div className="row pt-5 mx-auto">
+            <label style={styles.labelEmpleado}>
+              Empleado:
+            </label>
 
+            <br></br>
+            <label>
+              <select id="Empleado" value={empleado} style={styles.select} onChange={(event) => { setEmpleado(event.target.value) }} required>
+                <option value="Jesus">Jesus</option>
+                <option value="Jacinto">Jacinto</option>
+                <option value="Bernardo">Bernardo</option>
+                <option value="Nathan">Nathan</option>
+              </select>
+              <p style={styles.labelEmpleado}> Selecionado: {empleado}</p>
+            </label>
+            <br></br>
+            <label style={styles.labelEmpleado}>
+              Cliente:
+            </label>
+            <br></br>
+            <div className="col-8 form-group pt2 mx-auto">
+              <input style={styles.cliente} placeholder="Cliente" id="cliente"
+                onChange={(event) => { setCliente(event.target.value) }} required />
+            </div>
+            <br></br>
+            <label style={styles.labelEmpleado}>
+              Fecha:
+            </label>
+            <DatePicker className="fecha" style={styles.fecha} selected={selectedDate} onChange={handleDateChange} />
+            <br></br>
+            <div className="col-8 form-group pt2 mx-auto">
+              <input style={styles.encargado} placeholder="Encargado" id="Encargado"
+                onChange={(event) => { setEncargado(event.target.value) }} required />
+            </div>
+            <div>
+              <label style={styles.labelEmpleado}>
+                Tiempo Inicial: <br></br>
+                <input style={styles.hora} name="tiempoInicial" type="time" value={startTime} onChange={handleStartTimeChange} />
+              </label>
+              <br />
+              <label style={styles.labelEmpleado}>
+                Tiempo Final: <br></br>
+                <input style={styles.hora} name="tiempoFinal" type="time" value={endTime} onChange={handleEndTimeChange} />
+              </label>
+              <br />
+              <button style={styles.btnTiempo} onClick={calcTimeDifference}>Tiempo de direfencia</button>
+              <br />
+              {timeDifference && (
+                <div style={styles.labelEmpleado} name="tiempoTotal">
+                  Tiempo trabajando: {timeDifference}
+                </div>
+              )}
+            </div>
+            <div className="col-8 form-group pt2 mx-auto">
+              <input style={styles.equipo} placeholder="Equipo" id="Equipo"
+                onChange={(event) => { setEquipo(event.target.value) }} required />
+            </div>
+            <br></br>
+            <div className="col-8 form-group pt2 mx-auto">
+              <input style={styles.modelo} placeholder="Modelo" id="Modelo"
+                onChange={(event) => { setModelo(event.target.value) }} required />
+            </div>
+            <br></br>
+            <div>
+              <input style={styles.nºserie} placeholder="NºSerie" id="NºSerie"
+                onChange={(event) => { setSerie(event.target.value) }} required />
+            </div>
+            <br></br>
+            <div>
+              <textarea style={styles.textarea} placeholder="Trabajo Realizado" id="textInput" name="trabajo" onChange={(event) => { setTrabajo(event.target.value) }} />
+            </div>
+            <br></br>
+            <form onSubmit={handleSubmit}>
+              {inputs.map((value, index) => (
+                <div key={index}>
+                  <input style={styles.materiales} type="text" placeholder="Materiales" value={value} onChange={(event) => handleInputChange(event, index)} />
+                </div>
+              ))}
+              <button style={styles.btnTiempo} type="button" onClick={handleAddInput} >Añadir Materiales</button>
+              <button style={styles.btnTiempo} type="submit">Guardar</button>
+            </form>
+            <div>
+              <label style={styles.labelEmpleado}>Firma Tecnico:</label>
+              <SignatureCanvas canvasProps={styles.firma} ref={signatureRef} />
+              <button style={styles.btnTiempo} onClick={handleSave}>Guardar Firma</button>
+            </div>
+            <div>
+              <label style={styles.labelEmpleado}>Firma Cliente:</label>
+              <SignatureCanvas canvasProps={styles.firma} ref={signatureRefCliente} />
+              <button style={styles.btnTiempo} onClick={handleSavecliente}>Guardar Firma</button>
+            </div>
+            <div style={styles.contrato}>
+              <label style={styles.labelEmpleado}>Cubre contrato:</label>
               <br></br>
               <label>
-                <select id="Empleado" value={empleado} style={styles.select} onChange={(event) => {setEmpleado(event.target.value)}}  required>
-                  <option value="Jesus">Jesus</option>
-                  <option value="Jacinto">Jacinto</option>
-                  <option value="Bernardo">Bernardo</option>
-                  <option value="Nathan">Nathan</option>
-                </select>
-                <p style={styles.labelEmpleado}> Selecionado: {empleado}</p>
-              </label>
-              <br></br>
-              <label style={styles.labelEmpleado}>
-                Cliente:
-              </label>
-              <br></br>
-              <div className="col-8 form-group pt2 mx-auto">
-                <input style={styles.cliente} placeholder="Cliente" id="cliente" 
-                onChange={(event) => {setCliente(event.target.value)}}  required/>
-              </div>
-              <br></br>
-              <label style={styles.labelEmpleado}>
-                Fecha:
-              </label>
-              <DatePicker className="fecha" style={styles.fecha} selected={selectedDate} onChange={handleDateChange} />
-              <br></br>
-              <div className="col-8 form-group pt2 mx-auto">
-                <input style={styles.encargado} placeholder="Encargado" id="Encargado" 
-                onChange={(event) => {setEncargado(event.target.value)}}  required />
-              </div>
-              <div>
-                <label style={styles.labelEmpleado}>
-                  Tiempo Inicial: <br></br>
-                  <input style={styles.hora} name="tiempoInicial" type="time" value={startTime} onChange={handleStartTimeChange} />
-                </label>
-                <br />
-                <label style={styles.labelEmpleado}>
-                  Tiempo Final: <br></br>
-                  <input style={styles.hora} name="tiempoFinal" type="time" value={endTime} onChange={handleEndTimeChange} />
-                </label>
-                <br />
-                <button style={styles.btnTiempo} onClick={calcTimeDifference}>Tiempo de direfencia</button>
-                <br />
-                {timeDifference && (
-                  <div style={styles.labelEmpleado} name="tiempoTotal">
-                    Tiempo trabajando: {timeDifference}
-                  </div>
-                )}
-              </div>
-              <div className="col-8 form-group pt2 mx-auto">
-                <input style={styles.equipo} placeholder="Equipo" id="Equipo" 
-                 onChange={(event) => {setEquipo(event.target.value)}}  required/>
-              </div>
-              <br></br>
-              <div className="col-8 form-group pt2 mx-auto">
-                <input style={styles.modelo} placeholder="Modelo" id="Modelo" 
-                onChange={(event) => {setModelo(event.target.value)}}  required />
-              </div>
-              <br></br>
-              <div>
-                <input style={styles.nºserie} placeholder="NºSerie" id="NºSerie" 
-                onChange={(event) => {setSerie(event.target.value)}}  required />
-              </div>
-              <br></br>
-              <div>
-                <textarea style={styles.textarea} placeholder="Trabajo Realizado" id="textInput" name="trabajo" onChange={(event) => {setTrabajo(event.target.value)}} />
-              </div>
-              <br></br>
-              <form onSubmit={handleSubmit}>
-                {inputs.map((value, index) => (
-                  <div key={index}>
-                    <input style={styles.materiales} type="text" placeholder="Materiales" value={value} onChange={(event) => handleInputChange(event, index)} />
-                  </div>
-                ))}
-                <button style={styles.btnTiempo} type="button" onClick={handleAddInput} >Añadir Materiales</button>
-                <button style={styles.btnTiempo} type="submit">Guardar</button>
-              </form>
-              <div>
-                <label style={styles.labelEmpleado}>Firma Tecnico:</label>
-                <SignatureCanvas canvasProps={styles.firma} ref={signatureRef} />
-                <button style={styles.btnTiempo} onClick={handleSave}>Guardar Firma</button>
-              </div>
-              <div>
-                <label style={styles.labelEmpleado}>Firma Cliente:</label>
-                <SignatureCanvas canvasProps={styles.firma} ref={signatureRefCliente} />
-                <button style={styles.btnTiempo} onClick={handleSavecliente}>Guardar Firma</button>
-              </div>
-              <div style={styles.contrato}>
-                <label style={styles.labelEmpleado}>Cubre contrato:</label>
-                <br></br>
                 <input
-                  style={styles.checkk}
                   type="checkbox"
-                  id="checkbox-id"
                   checked={isChecked}
-                  onChange={handleCheck}
+                  onChange={handleCheckboxChange}
                 />
-                <label style={styles.checktext} htmlFor="checkbox-id">Si</label>
-                <input
-                  style={styles.checkk}
-                  type="checkbox"
-                  id="checkbox2-id"
-                  checked={!isChecked}
-                  onChange={handleCheck}
-                />
-                <label style={styles.checktext} htmlFor="checkbox2-id">No</label>
-              </div>
-              <br></br>
-              <div style={styles.divParte}>
-              <button style={styles.btnTiempo} type="submit" onClick={submitInfo}>Enviar</button>
-              </div>
+                Checkbox label
+              </label>
             </div>
+            <br></br>
+            <div style={styles.divParte}>
+              <button style={styles.btnTiempo} type="submit" onClick={submitInfo}>Enviar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
