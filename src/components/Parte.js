@@ -286,8 +286,6 @@ const styles = {
     maxWidth: "700px",
     minWidth: "390px",
     position: "static",
-    
-
   },
   containeer: {
     position: "absolute",
