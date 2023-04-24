@@ -284,7 +284,7 @@ const styles = {
     width: "400px",
     padding: "10px",
     maxWidth: "700px",
-    minWidth: "390px",
+    minWidth: "395px",
     position: "static",
   },
   containeer: {
