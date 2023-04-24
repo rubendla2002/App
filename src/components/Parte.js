@@ -114,7 +114,7 @@ function Parte() {
     console.log(cliente + " " + empleado)
     doc.text("Tiempo trabajado:  ", 120, 270)
     doc.text("Cubre contrato:  " + (isChecked ? "SI" : "NO" ), 120, 280)
-    doc.save('hola.pdf');
+    doc.save(empleado +'  hola.pdf');
 
 
   }
@@ -163,7 +163,6 @@ function Parte() {
             <label style={styles.labelEmpleado}>
               Empleado:
             </label>
-
             <br></br>
             <label>
               <select id="Empleado" value={empleado} style={styles.select} onChange={(event) => { setEmpleado(event.target.value) }} required>
