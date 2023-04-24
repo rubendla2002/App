@@ -155,8 +155,8 @@ function Parte() {
 
   return (
     <div style={styles.container}>
-      <img src={logo} alt="logo" className="img" style={styles.logo} />
       <div style={styles.containeer}>
+      <img src={logo} alt="logo" className="img" style={styles.logo} />
 
         <div className="container">
           <div className="row pt-5 mx-auto">
@@ -283,6 +283,11 @@ const styles = {
     height: "350px",
     width: "400px",
     padding: "10px",
+    maxWidth: "700px",
+    minWidth: "390px",
+    position: "static",
+    
+
   },
   containeer: {
     position: "absolute",
@@ -344,7 +349,7 @@ const styles = {
     fontSize: "11pt",
   },
   firma: {
-    width: "393px",
+    width: "390px",
     height: "200px",
     border: "2px solid red",
     borderRadius: "10px",
@@ -392,19 +397,21 @@ const styles = {
     fontSize: "11pt",
     marginTop: "5px",
     height: "150px",
-    width: "300px",
+    width: "200px",
+    minWidth: "200px",
+    maxWidth: "350px",
   },
   logo: {
-    position: "absolute",
+    position: "relative",
     width: "400px",
     textAlign: "center",
-    top: "30%",
-    left: "50%",
     transform: "translate(-50%, -50%)",
+    left: "190px",
     color: "white",
     height: "110px",
     maxWidth: "400px",
     minWidth: "400px",
+
 
   },
   hora: {

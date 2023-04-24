@@ -1,0 +1,191 @@
+ .container {
+    display: flex;
+    flex-Direction: row;
+    justify-Content: center;
+    align-Items: center;
+    height: 350px;
+    width: 400px;
+    padding: 10px;
+    max-width: 700px;
+    min-width: 390px;
+    
+  }
+
+  .containeer {
+    position: "absolute";
+    height: 0px;
+    width: 380px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+
+
+  }
+
+  .labelEmpleado {
+    font-family: arial;
+    font-size: 20px;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 8px;
+
+  }
+  .select {
+    padding: 5px 10px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+    text-align: center;
+
+  }
+  .cliente {
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+  }
+  .fechatext {
+    font-family: cursive;
+    font-size: 20px;
+    font-Weight: bold;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+  }
+  .fecha {
+    font-size: 14pt;
+    border-radius: 10px;
+    margin-top: 5px;
+  }
+  .encargado {
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+  }
+  .firma {
+    width: 393px;
+    height: 200px;
+    border: 2px solid red;
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+  }
+  .firmatext {
+    font-family: cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+
+  }
+  .equipo {
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+  }
+  .modelo {
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+  }
+  .nºserie{
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+  }
+  .textarea {
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+    margin-top: 5px;
+    height: 150px;
+    width: 300px;
+  }
+  .logo {
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    height: 110px;
+    max-width: 400px;
+    min-width: 400px;
+
+  }
+  .hora {
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 50px;
+    font-size: 11pt;
+  }
+  .btnTiempo {
+    padding: 5px 3px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 50px;
+    font-size: 11pt;
+    background-color: #000;
+    color: white;
+  }
+  .checktext {
+    font-family: arial;
+    font-size: 18px;
+    color: #000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:8px;
+  }
+  .contrato {
+    padding: 20px 40px;
+    display: flex;
+    position: absolute;
+  }
+  .materiales {
+    padding: 20px 40px;
+    margin: 10px 0;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+  }
+  .btnParte {
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 11pt;
+    background-color: #B4B4B6;
+    color: black;
+    align-items: center;
+  }
+  .divParte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px,
+  }
