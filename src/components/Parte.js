@@ -154,11 +154,11 @@ function Parte() {
 
 
   return (
-    <div style={styles.container}>
+    <div style={styles.container} className="container">
       <div style={styles.containeer}>
       <img src={logo} alt="logo" className="img" style={styles.logo} />
 
-        <div className="container">
+        <div className="containeer">
           <div className="row pt-5 mx-auto">
             <label style={styles.labelEmpleado}>
               Empleado:
@@ -276,13 +276,11 @@ export default Parte;
 
 const styles = {
   container: {
-    display: "flex",
-    marginTop: "100px",
-    height: "350px",
+    marginTop: "120px",
+    height: "0px",
     width: "350px",
-    padding: "10px",
-    maxWidth: "700px",
-    minWidth: "350px",
+    left: "50%",
+    
   },
   containeer: {
     position: "absolute",
@@ -291,6 +289,8 @@ const styles = {
     left: "50%",
     transform: "translate(-50%, -50%)",
     color: "white",
+    maxWidth: "700px",
+    minWidth: "350px",
     
   },
   labelEmpleado: {
@@ -399,9 +399,9 @@ const styles = {
     position: "relative",
     textAlign: "center",
     transform: "translate(-50%, -50%)",
-    left: "200px",
+    left: "175px",
     color: "white",
-    height: "110px",
+    height: "100px",
     maxWidth: "700px",
     minWidth: "350px",
 
