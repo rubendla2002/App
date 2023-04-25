@@ -277,20 +277,17 @@ export default Parte;
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+    marginTop: "100px",
     height: "350px",
-    width: "400px",
+    width: "350px",
     padding: "10px",
     maxWidth: "700px",
     minWidth: "350px",
-    position: "static",
   },
   containeer: {
     position: "absolute",
     height: "0px",
-    width: "380px",
+    width: "350px",
     left: "50%",
     transform: "translate(-50%, -50%)",
     color: "white",
