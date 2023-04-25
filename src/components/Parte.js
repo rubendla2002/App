@@ -114,7 +114,7 @@ function Parte() {
     console.log(cliente + " " + empleado)
     doc.text("Tiempo trabajado:  ", 120, 270)
     doc.text("Cubre contrato:  " + (isChecked ? "SI" : "NO" ), 120, 280)
-    doc.save(empleado +'  hola.pdf');
+    doc.save(empleado +'  Parte.pdf');
 
 
   }
