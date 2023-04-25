@@ -4,7 +4,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 function Menu() {
   return (
-    <div>
+    <div style={styles.div}>
       <nav>
         <Link to="/" Menu></Link>  &nbsp;
         <Link to="/drive" style={styles.boton}>Drive</Link> &nbsp; 
@@ -32,7 +32,16 @@ const styles = {
     borderRadius: "20px",
     boxShadow: "0 9px #999",
     marginTop: "15px",
-    float:"left"
+    margin: "0 auto",
+    padding: "0.5rem 1rem",
+    display: "block",
+    padding: "0.5rem 1rem",
+    width: "45px",
+    
+    
+    },
+    div:{
+      
     }
   }
   

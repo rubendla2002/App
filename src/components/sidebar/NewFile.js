@@ -93,14 +93,14 @@ const NewFile = () => {
                 aria-describedby="simple-modal-description"
             >
                 <div style={modalStyle} className={classes.paper}>
-                    <p>Select files you want to upload!</p>
+                    <p>SELECCIONA TU FICHERO</p>
                     {
                         uploading ? (
-                            <p>Uploading...</p>
+                            <p>CARGANDO...</p>
                         ) : (
                                 <>
                                     <input type="file" onChange={handleChange} />
-                                    <button onClick={handleUpload}>Upload</button>
+                                    <button onClick={handleUpload}>CARGAR</button>
                                 </>
                             )
                     }

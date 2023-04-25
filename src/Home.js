@@ -11,9 +11,9 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Bienvenido, sesión iniciada, wapetón</h1>
-      <button onClick={cerrarSesion}>Cerrar Sesión</button>
+    <div style={styles.div}>
+      <h1 style={styles.letras}>Bienvenido a Nettronica</h1>
+      <button style={styles.boton} onClick={cerrarSesion}>Cerrar Sesión</button>
       <Routes>
       <Route path="/" element={<Menu/>}>
         <Route path="parte" element={<Parte/>}/>
@@ -25,3 +25,20 @@ const Home = () => {
 };
 
 export default Home;
+
+const styles = {
+  letras:{
+    textAlign:"center",
+  },
+  boton:{
+    display: "block",
+    padding: "0.5rem 1rem",
+    width: "200px",
+    margin: "0 auto",
+    borderRadius: "20px",
+  },
+  div:{
+    backgroundColor: "rgba(110, 165, 237, 0.686)",
+    height: "100px",
+  },
+}

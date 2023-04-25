@@ -284,7 +284,7 @@ const styles = {
     width: "400px",
     padding: "10px",
     maxWidth: "700px",
-    minWidth: "390px",
+    minWidth: "350px",
     position: "static",
   },
   containeer: {
@@ -294,6 +294,7 @@ const styles = {
     left: "50%",
     transform: "translate(-50%, -50%)",
     color: "white",
+    
   },
   labelEmpleado: {
     fontFamily: 'arial',
@@ -345,7 +346,7 @@ const styles = {
     fontSize: "11pt",
   },
   firma: {
-    width: "390px",
+    width: "320px",
     height: "200px",
     border: "2px solid red",
     borderRadius: "10px",
@@ -399,14 +400,13 @@ const styles = {
   },
   logo: {
     position: "relative",
-    width: "400px",
     textAlign: "center",
     transform: "translate(-50%, -50%)",
-    left: "190px",
+    left: "200px",
     color: "white",
     height: "110px",
-    maxWidth: "400px",
-    minWidth: "400px",
+    maxWidth: "700px",
+    minWidth: "350px",
 
 
   },
