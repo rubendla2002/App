@@ -40,5 +40,6 @@ const styles = {
   div:{
     backgroundColor: "rgba(110, 165, 237, 0.686)",
     height: "100px",
+    width: "auto",
   },
 }
