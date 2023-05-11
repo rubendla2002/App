@@ -1,6 +1,6 @@
 import React from "react";
 import { firebaseApp } from "./firebase";
-import logo from "./media/Logo Nettronica_Letra Blanca.png"
+import logo from "./media/logo.png"
 
 
 const Logueo = (props) => {
@@ -100,10 +100,10 @@ const styles = {
     left: "50%",
     transform: "translate(-50%, -50%)",
     color:"white",
-    width: "450px",
-    height: "300px",
+    width: "200px",
+    height: "200px",
     maxWidth : "400px",
-    minWidth : "350px",    
+    minWidth : "100px",    
   
   },
   campos:{ 
