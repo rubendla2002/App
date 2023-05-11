@@ -96,7 +96,7 @@ const styles = {
   logo:{
     position: "absolute",
     textAlign: "center",
-    top: "17%",
+    top: "10%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     color:"white",
