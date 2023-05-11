@@ -58,17 +58,17 @@ function Parte() {
 
   const submitInfo = () => {
     const doc = new jsPDF();
-    doc.addImage(logo, 'PNG', 10, 8, 50, 25);
+    doc.addImage(logo, 'PNG', 10, 8, 83, 25);
     doc.setFontSize(12);
     doc.text("PARTE DE VISITA", 150, 10);
     doc.text("SERVICIO TÉCNICO", 147, 15);
-    doc.addImage(telefono, 'PNG', 144, 18, 5, 5)
-    doc.addImage(correo, 'PNG', 145, 24, 3, 3.5)
-    doc.addImage(informacion, 'PNG', 145, 29.5, 3.5, 3)
+    doc.addImage(telefono, 'PNG', 152, 18, 5, 5)
+    doc.addImage(correo, 'PNG', 153, 24, 3, 3.5)
+    doc.addImage(informacion, 'PNG', 153, 29.5, 3.5, 3)
     doc.setFontSize(10);
-    doc.text("928 18 89 49", 150, 22);
-    doc.text("administracion@cifpvilladeaguimes.es", 150, 27);
-    doc.text("www.cifpvilladeaguimes.es", 150, 32);
+    doc.text("928 755 239", 160, 22);
+    doc.text("soporte@nettronica.com", 160, 27);
+    doc.text("www.nettronica.com", 160, 32);
     doc.setLineWidth(0.5);
     doc.line(200, 40, 8, 40);
     doc.line(8, 40, 8, 290);
@@ -167,8 +167,7 @@ function Parte() {
                 <option value="Jesus">Jesus</option>
                 <option value="Jacinto">Jacinto</option>
                 <option value="Bernardo">Bernardo</option>
-                <option value="Nathan">Manuel</option>
-                <option value="Nathan">Ruben</option>
+                <option value="Nathan">Nathan</option>
               </select>
               <p style={styles.labelEmpleado}> Selecionado: {empleado}</p>
             </label>
@@ -236,14 +235,17 @@ function Parte() {
                 </div>
               ))}
               <button style={styles.btnTiempo} type="button" onClick={handleAddInput} >Añadir Materiales</button>
+              <button style={styles.btnTiempo} type="submit">Guardar</button>
             </form>
             <div>
               <label style={styles.labelEmpleado}>Firma Tecnico:</label>
               <SignatureCanvas canvasProps={styles.firma} ref={signatureRef} />
+              <button style={styles.btnTiempo} onClick={handleSave}>Guardar Firma</button>
             </div>
             <div>
               <label style={styles.labelEmpleado}>Firma Cliente:</label>
               <SignatureCanvas canvasProps={styles.firma} ref={signatureRefCliente} />
+              <button style={styles.btnTiempo} onClick={handleSavecliente}>Guardar Firma</button>
             </div>
             <div style={styles.contrato}>
               <label style={styles.labelEmpleado}>Cubre contrato:</label>
@@ -397,10 +399,9 @@ const styles = {
     transform: "translate(-50%, -50%)",
     left: "175px",
     color: "white",
-    height: "220px",
+    height: "100px",
     maxWidth: "700px",
     minWidth: "350px",
-    marginTop: "15px",
 
 
   },
