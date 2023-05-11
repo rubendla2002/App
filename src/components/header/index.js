@@ -10,7 +10,7 @@ const index = ({ Logo }) => {
         <div className='header' style={styles.container}>
             <div className="header__logo" style={styles.dentro} >
             <img src={logo} alt="logo" className="img" style={styles.img} />
-                <span style={styles.label}>Nettronica</span>
+                <span style={styles.label}>Villa de Aguimes</span>
             </div>
         </div>
     )

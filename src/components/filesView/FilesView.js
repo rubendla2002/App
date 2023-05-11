@@ -9,7 +9,7 @@ const FilesView = () => {
     const [files, setFiles] = useState([])
 
     useEffect(() => {
-        db.collection('myFiles').onSnapshot(snapshot => {
+        db.collection('PartesGuardados').onSnapshot(snapshot => {
             setFiles(snapshot.docs.map(doc => ({
                 id: doc.id,
                 item: doc.data()

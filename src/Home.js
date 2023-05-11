@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div style={styles.div}>
-      <h1 style={styles.letras}>Bienvenido a Nettronica</h1>
+      <h1 style={styles.letras}>Bienvenido a Villa de Aguimes</h1>
       <button style={styles.boton} onClick={cerrarSesion}>Cerrar Sesión</button>
       <Routes>
       <Route path="/" element={<Menu/>}>

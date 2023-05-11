@@ -1,13 +1,13 @@
 import firebase from 'firebase'
 
 const firebaseConfig = {
-     apiKey: "AIzaSyBy8uRiVcH9aEc0DgBST8c9_uicTjqhxMc",
-  authDomain: "nettronica-301ab.firebaseapp.com",
-  databaseURL: "https://nettronica-301ab-default-rtdb.firebaseio.com",
-  projectId: "nettronica-301ab",
-  storageBucket: "nettronica-301ab.appspot.com",
-  messagingSenderId: "1021682503544",
-  appId: "1:1021682503544:web:eb7ce3fe5663bcaab7828d"
+  apiKey: "AIzaSyDBF_LQaVgxpq4Ewh2UNZDGiwt3Solj7-A",
+  authDomain: "villadeaguimes-f56a9.firebaseapp.com",
+  projectId: "villadeaguimes-f56a9",
+  storageBucket: "villadeaguimes-f56a9.appspot.com",
+  messagingSenderId: "23302709541",
+  appId: "1:23302709541:web:c1ed5bd27e8d96d3b2facc",
+  measurementId: "G-46ZR0RW1RY"
 };
 
 export const firebaseApp = firebase.initializeApp(firebaseConfig)
